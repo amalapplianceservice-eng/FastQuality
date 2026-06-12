@@ -29,8 +29,9 @@ function clean($v) {
 }
 $name      = clean($_POST['name']      ?? '');
 $phone     = clean($_POST['phone']     ?? '');
-$address   = clean($_POST['address']   ?? '');
+$address   = clean($_POST['zip'] ?? ($_POST['address'] ?? ''));
 $appliance = clean($_POST['appliance'] ?? '');
+$issue     = clean($_POST['issue']     ?? '');
 $page      = clean($_POST['page']      ?? '');
 
 // ---- Validate required fields ----
@@ -56,6 +57,9 @@ if ($address !== '') {
     $body .= "Address:    $address\n";
 }
 $body .= "Appliance:  $appliance\n";
+if ($issue !== '') {
+    $body .= "Issue:      $issue\n";
+}
 $body .= "\n";
 $body .= "Submitted:  " . date('Y-m-d H:i:s') . " (server time)\n";
 if ($page !== '') {
