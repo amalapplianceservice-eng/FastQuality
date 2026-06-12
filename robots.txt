@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/original/
+
+Sitemap: https://fastquality.us/sitemap.xml
