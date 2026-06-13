@@ -234,7 +234,7 @@ h1, h2 { text-transform: uppercase; }
 /* ---------- Hero animated background (Aurora) ---------- */
 .hero-anim {
   position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden;
-  animation: aurora-hue 19s ease-in-out infinite;
+  animation: aurora-hue 46s ease-in-out infinite;
 }
 /* slow-rotating iridescent "oil-sheen" overlay */
 .hero-anim::before {
@@ -244,7 +244,7 @@ h1, h2 { text-transform: uppercase; }
     rgba(44,111,191,.12) 50%, transparent 66%,
     rgba(240,120,24,.07) 80%, transparent 100%);
   filter: blur(46px); will-change: transform;
-  animation: aurora-sheen 38s linear infinite;
+  animation: aurora-sheen 85s linear infinite;
 }
 .aurora {
   position: absolute; border-radius: 50%;
@@ -253,22 +253,22 @@ h1, h2 { text-transform: uppercase; }
 .aurora-1 {
   width: 580px; height: 580px; top: -170px; right: -130px;
   background: radial-gradient(circle at 35% 35%, rgba(44,111,191,.52), rgba(44,111,191,0) 70%);
-  animation: drift-1 28s ease-in-out infinite, breathe-a 9s ease-in-out infinite;
+  animation: drift-1 64s ease-in-out infinite, breathe-a 24s ease-in-out infinite;
 }
 .aurora-2 {
   width: 540px; height: 540px; bottom: -220px; left: -110px;
   background: radial-gradient(circle at 50% 50%, rgba(92,155,224,.48), rgba(92,155,224,0) 70%);
-  animation: drift-2 32s ease-in-out infinite, breathe-b 11s ease-in-out infinite;
+  animation: drift-2 72s ease-in-out infinite, breathe-b 28s ease-in-out infinite;
 }
 .aurora-3 {
   width: 480px; height: 480px; top: 24%; left: 40%;
   background: radial-gradient(circle at 50% 50%, rgba(27,63,110,.36), rgba(27,63,110,0) 70%);
-  animation: drift-3 36s ease-in-out infinite, breathe-a 13s ease-in-out infinite;
+  animation: drift-3 84s ease-in-out infinite, breathe-a 32s ease-in-out infinite;
 }
 .aurora-4 {
   width: 320px; height: 320px; top: 6%; left: 22%;
   background: radial-gradient(circle at 50% 50%, rgba(240,120,24,.18), rgba(240,120,24,0) 70%);
-  animation: drift-4 24s ease-in-out infinite, breathe-c 8s ease-in-out infinite;
+  animation: drift-4 56s ease-in-out infinite, breathe-c 20s ease-in-out infinite;
 }
 
 @keyframes hero-spin { to { transform: rotate(360deg); } }
