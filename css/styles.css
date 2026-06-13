@@ -336,17 +336,6 @@ h1, h2 { text-transform: uppercase; }
   background: linear-gradient(180deg, rgba(255,255,255,.75) 0%, rgba(255,255,255,0) 48%);
   pointer-events: none;
 }
-/* slow specular glare sweeping across the glass */
-.pill::after {
-  content: ''; position: absolute; top: 0; bottom: 0; left: -70%; width: 55%; z-index: -1;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.65), transparent);
-  transform: skewX(-18deg); pointer-events: none;
-  animation: pill-glare 7s ease-in-out infinite;
-}
-@keyframes pill-glare {
-  0%, 100% { left: -70%; }
-  45%, 55% { left: 130%; }
-}
 .pill-dot {
   width: 9px; height: 9px; border-radius: 50%; background: var(--orange);
   box-shadow: 0 0 0 4px rgba(240,120,24,.18), 0 1px 3px rgba(240,120,24,.5),
@@ -380,18 +369,11 @@ h1, h2 { text-transform: uppercase; }
     inset 0 1px 1px rgba(255,255,255,.95),
     inset 0 -10px 24px rgba(255,255,255,.22);
 }
-/* glossy top sheen + slow specular glare */
+/* glossy top sheen (static) */
 .hero-card::before {
   content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none;
   background: linear-gradient(180deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 32%);
 }
-.hero-card::after {
-  content: ''; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 45%; z-index: -1;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.45), transparent);
-  transform: skewX(-16deg); pointer-events: none;
-  animation: card-glare 11s ease-in-out infinite;
-}
-@keyframes card-glare { 0%, 100% { left: -60%; } 50% { left: 120%; } }
 .hero-card h2 { font-size: 1.5rem; color: var(--navy); }
 .hero-card-sub { color: var(--muted); font-size: .95rem; margin: 6px 0 22px; }
 .book-form { display: flex; flex-direction: column; gap: 15px; }
