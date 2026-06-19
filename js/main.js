@@ -46,14 +46,14 @@
     });
   });
 
-  // How-it-works: wheel-hijack (single card, horizontal slide)
+  // How-it-works carousel (single card, arrow navigation)
   var hiwSection = document.querySelector('.hiw');
   if (hiwSection) {
     var steps = [
       { num: '01', title: 'Set an Appointment', desc: 'Call or book online and tell us the appliance and what\u2019s going wrong.' },
       { num: '02', title: 'Diagnosis & Estimate', desc: 'Our experienced technician evaluates your appliance, explains the issue, and gives you a clear repair estimate.' },
       { num: '03', title: 'Quick, Easy Repair', desc: 'We restore your appliance to full functionality with prompt, professional repair service.' },
-      { num: '04', title: 'Enjoy & Review', desc: 'Enjoy your fully working appliance — and let us know how we did with a quick review.' }
+      { num: '04', title: 'Enjoy & Review', desc: 'Enjoy your fully working appliance and let us know how we did with a quick review.' }
     ];
     var hiwCardInner = hiwSection.querySelector('.hiw-card-inner');
     var hiwCur = hiwSection.querySelector('.hiw-cur');
@@ -62,10 +62,7 @@
     var hiwNext = hiwSection.querySelector('.hiw-arrow-next');
     var hiwAnimTimer;
     var hiwStep = 0;
-    var hiwLocked = false;
     var hiwStepTime = 0;
-    var hiwUnlockTime = 0;
-    var hiwLastScrollY = 0;
 
     function hiwRender(index, direction) {
       clearTimeout(hiwAnimTimer);
@@ -113,93 +110,6 @@
       hiwFill.style.width = ((index + 1) / steps.length * 100) + '%';
       hiwUpdateArrows();
     }
-
-    function hiwLock(goingDown) {
-      hiwLocked = true;
-      hiwStepTime = Date.now();
-      document.documentElement.style.overflow = 'hidden';
-      window.scrollTo(0, hiwSection.offsetTop);
-      if (goingDown) {
-        hiwStep = 0;
-        hiwSetStep(0);
-      } else {
-        hiwStep = steps.length - 1;
-        hiwSetStep(steps.length - 1);
-      }
-    }
-
-    function hiwUnlock(scrollTarget) {
-      hiwLocked = false;
-      hiwUnlockTime = Date.now();
-      document.documentElement.style.overflow = '';
-      if (scrollTarget != null) {
-        window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
-      }
-    }
-
-    window.addEventListener('wheel', function (e) {
-      if (hiwLocked) {
-        e.preventDefault();
-        if (Date.now() - hiwStepTime < 700) return;
-        var dir = e.deltaY > 0 ? 1 : -1;
-        var next = hiwStep + dir;
-        if (next < 0) { hiwUnlock(); return; }
-        if (next >= steps.length) {
-          hiwUnlock(hiwSection.offsetTop + hiwSection.offsetHeight);
-          return;
-        }
-        hiwStepTime = Date.now();
-        hiwStep = next;
-        hiwRender(hiwStep, dir > 0 ? 'down' : 'up');
-        return;
-      }
-      if (Date.now() - hiwUnlockTime < 1200) return;
-      var rect = hiwSection.getBoundingClientRect();
-      if (rect.top <= 60 && rect.bottom > window.innerHeight * 0.5) {
-        e.preventDefault();
-        hiwLock(e.deltaY > 0);
-      }
-    }, { passive: false });
-
-    window.addEventListener('scroll', function () {
-      var sy = window.scrollY;
-      var goingDown = sy > hiwLastScrollY;
-      hiwLastScrollY = sy;
-      if (hiwLocked) return;
-      if (Date.now() - hiwUnlockTime < 1200) return;
-      var rect = hiwSection.getBoundingClientRect();
-      if (rect.top <= 0 && rect.bottom > window.innerHeight * 0.5) {
-        hiwLock(goingDown);
-      }
-    }, { passive: true });
-
-    var hiwTouchY = 0;
-    var hiwTouchActive = false;
-    hiwSection.addEventListener('touchstart', function (e) {
-      hiwTouchY = e.touches[0].clientY;
-      hiwTouchActive = false;
-    }, { passive: true });
-    hiwSection.addEventListener('touchmove', function (e) {
-      if (!hiwLocked || Date.now() - hiwStepTime < 1000 || hiwTouchActive) return;
-      var dy = hiwTouchY - e.touches[0].clientY;
-      if (Math.abs(dy) < 50) return;
-      hiwTouchActive = true;
-      hiwTouchY = e.touches[0].clientY;
-      var dir = dy > 0 ? 1 : -1;
-      var next = hiwStep + dir;
-      if (next < 0) { hiwLocked = false; hiwUnlockTime = Date.now(); return; }
-      if (next >= steps.length) {
-        hiwLocked = false;
-        hiwUnlockTime = Date.now();
-        window.scrollTo({ top: hiwSection.offsetTop + hiwSection.offsetHeight, behavior: 'smooth' });
-        e.preventDefault();
-        return;
-      }
-      e.preventDefault();
-      hiwStepTime = Date.now();
-      hiwStep = next;
-      hiwRender(hiwStep, dir > 0 ? 'down' : 'up');
-    }, { passive: false });
 
     if (hiwPrev) {
       hiwPrev.addEventListener('click', function () {
