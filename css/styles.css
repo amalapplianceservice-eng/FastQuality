@@ -900,8 +900,8 @@ h1, h2 { text-transform: uppercase; }
 @media (max-width: 760px) {
   .svc-hero .container { padding-top: 90px; padding-bottom: 56px; }
   .svc-hero h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); }
-  .trust-pills { gap: 8px; }
-  .trust-pill { font-size: .82rem; padding: 7px 14px; }
+  .trust-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .trust-pill { font-size: .82rem; padding: 7px 14px; justify-content: center; }
   .problem-item { grid-template-columns: 40px 1fr; gap: 14px; padding: 22px 0; }
   .problem-num { font-size: 1.4rem; }
 }
