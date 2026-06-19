@@ -968,8 +968,11 @@ h1, h2 { text-transform: uppercase; }
 
 @media (max-width: 480px) {
   .services-grid, .why-grid { grid-template-columns: 1fr; }
-  .brands-grid-wrap { grid-template-columns: repeat(3, 1fr); }
-  .bg-title { grid-column: 1 / -1; }
+  .brands-grid-wrap { grid-template-columns: repeat(4, 1fr); gap: 0; background: rgba(255,255,255,.65); border-radius: 18px; }
+  .bg-title { grid-column: 1 / -1; order: -1; padding: 22px 16px; border-bottom: 1px solid var(--line); }
+  .bg-title h2 { font-size: 1.25rem; }
+  .bg-cell { padding: 14px 8px; min-height: 64px; background: transparent; }
+  .bg-cell img { max-height: 32px; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero-actions .btn, .commercial-actions .btn, .cta-actions .btn { width: 100%; }
   .hero-trust { gap: 18px; }
