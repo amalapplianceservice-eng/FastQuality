@@ -65,7 +65,7 @@
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "4020 Chicago Ave, Ste 1039",
+      "streetAddress": "4020 Chicago Ave",
       "addressLocality": "Riverside",
       "addressRegion": "CA",
       "postalCode": "92507",
@@ -89,7 +89,7 @@
       "credentialCategory": "license",
       "name": "Major Appliance Repair License #50682"
     },
-    "paymentAccepted": "Visa, Mastercard, American Express, Square",
+    "paymentAccepted": "Visa, Mastercard, American Express, Square, Cash, Check",
     "hasMap": "https://www.google.com/maps/place/Fast+Quality+Appliance+Repair/@33.9732732,-117.3475771,17z",
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "10" }
   }
@@ -124,7 +124,12 @@
       {
         "@type": "Question",
         "name": "What payment methods do you accept?",
-        "acceptedAnswer": { "@type": "Answer", "text": "We accept Visa, Mastercard, American Express and Square. Our technician will provide a clear estimate before any repair work begins." }
+        "acceptedAnswer": { "@type": "Answer", "text": "We accept Visa, Mastercard, American Express, Square, cash, and checks. Our technician will provide a clear estimate before any repair work begins." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer a warranty on your repairs?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every repair comes with a 90-day labor warranty. If the same issue returns within that period, we'll come back and fix it at no additional charge for labor." }
       }
     ]
   }
@@ -133,10 +138,23 @@
 
 <body class="home">
   <div class="preloader" id="preloader" role="status" aria-label="Loading">
-    <svg class="preloader-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true">
-      <path d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.5 7.5 0 0 0-1.7-1l-.4-2.6H10l-.4 2.6a7.5 7.5 0 0 0-1.7 1l-2.4-1-2 3.4L3.6 11a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 0 0 1.7 1l.4 2.6h4l.4-2.6a7.5 7.5 0 0 0 1.7-1l2.4 1 2-3.4-2-1.6z"/>
-      <circle cx="12" cy="12" r="3.2"/>
-    </svg>
+    <div class="preloader-wrench-wrap">
+      <svg class="preloader-wrench" viewBox="-20 -20 552 552" aria-hidden="true">
+        <defs>
+          <linearGradient id="wrenchFill" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="var(--cobalt)">
+              <animate attributeName="offset" values="0;1" dur="1.1s" fill="freeze"/>
+            </stop>
+            <stop offset="0%" stop-color="transparent">
+              <animate attributeName="offset" values="0;1" dur="1.1s" fill="freeze"/>
+            </stop>
+          </linearGradient>
+          <path id="wrenchPath" d="M507.73 109.1c-2.24-9.03-13.54-12.05-20.12-5.46l-74.13 74.13-67.88-11.31-11.31-67.88 74.13-74.13c6.59-6.59 3.56-17.88-5.46-20.12a136.07 136.07 0 0 0-148.28 31.06 135.95 135.95 0 0 0-27.81 143.77L24.38 381.64a82.93 82.93 0 0 0 0 117.31 82.93 82.93 0 0 0 117.31 0l202.48-202.49a135.93 135.93 0 0 0 143.77-27.81 136.07 136.07 0 0 0 19.79-159.55zM82.84 480.09a29.87 29.87 0 1 1 0-42.24 29.87 29.87 0 0 1 0 42.24z"/>
+        </defs>
+        <use href="#wrenchPath" fill="none" stroke="var(--navy)" stroke-width="12" stroke-linejoin="round" class="wrench-outline"/>
+        <use href="#wrenchPath" fill="url(#wrenchFill)"/>
+      </svg>
+    </div>
     <span class="preloader-text">Fast <span>Quality</span></span>
   </div>
 
@@ -157,6 +175,7 @@
               <li><a href="services/refrigerator-repair">Refrigerator Repair</a></li>
               <li><a href="services/dryer-repair">Dryer Repair</a></li>
               <li><a href="services/oven-repair">Oven Repair</a></li>
+              <li><a href="services/microwave-repair">Microwave Repair</a></li>
               <li><a href="services/wine-cooler-repair">Wine Cooler Repair</a></li>
               <li><a href="services/dishwasher-repair">Dishwasher Repair</a></li>
               <li><a href="services/washer-repair">Washer Repair</a></li>
@@ -256,6 +275,7 @@
                 <option>Refrigerator</option>
                 <option>Dryer</option>
                 <option>Oven</option>
+                <option>Microwave</option>
                 <option>Wine Cooler</option>
                 <option>Dishwasher</option>
                 <option>Washer</option>
@@ -274,72 +294,88 @@
       </div>
     </section>
 
-    <!-- ============ TRUST BAR ============ -->
-    <section class="trust-bar" aria-label="Our credentials">
-      <div class="container trust-grid">
-        <div class="trust-item"><span class="trust-ico" aria-hidden="true">✓</span> Licensed #50682 &amp; Insured</div>
-        <div class="trust-item"><span class="trust-ico" aria-hidden="true">✓</span> Workmanship Warranty</div>
-        <div class="trust-item"><span class="trust-ico" aria-hidden="true">✓</span> Experienced Technicians</div>
-        <div class="trust-item"><span class="trust-ico" aria-hidden="true">✓</span> Open 7 Days a Week</div>
-      </div>
-    </section>
 
     <!-- ============ APPLIANCES WE SERVICE ============ -->
     <section class="services section" id="services" aria-labelledby="services-heading">
-      <div class="container">
-        <header class="section-head">
+      <div class="container svc-layout">
+        <header class="svc-heading">
           <span class="eyebrow">What we fix</span>
           <h2 id="services-heading">Home Appliances We Service</h2>
           <p class="section-lead">
             Riverside and San Bernardino County residents have trusted us for years.
             From a fridge that won't cool to a washer that won't spin, we repair every major household appliance.
           </p>
+          <div class="svc-arrows">
+            <button class="svc-arrow svc-arrow-prev" aria-label="Previous service"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="svc-arrow svc-arrow-next" aria-label="Next service"><svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
         </header>
 
-        <ul class="services-grid">
-          <li>
-            <a class="service-card" href="services/refrigerator-repair" aria-label="Fridge Service – learn more">
-              <span class="service-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="9" y1="5.5" x2="9" y2="7.5"/><line x1="9" y1="12.5" x2="9" y2="15.5"/></svg></span>
+        <div class="svc-accordion">
+          <div class="svc-panel active" data-href="services/refrigerator-repair">
+            <span class="svc-panel-label">Fridge Service</span>
+            <div class="svc-panel-content">
+              <span class="svc-panel-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><line x1="6" y1="10" x2="18" y2="10"/><line x1="9" y1="5.5" x2="9" y2="7.5"/><line x1="9" y1="12.5" x2="9" y2="15.5"/></svg></span>
               <h3>Fridge Service</h3>
-              <span class="service-link" aria-hidden="true">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="service-card" href="services/dryer-repair" aria-label="Dryer Service – learn more">
-              <span class="service-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><line x1="4" y1="7" x2="20" y2="7"/><circle cx="12" cy="14" r="4.2"/><path d="M8.5 14a1.5 1.5 0 0 1 3 0 1.5 1.5 0 0 0 3 0"/></svg></span>
-              <h3>Dryer Service</h3>
-              <span class="service-link" aria-hidden="true">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="service-card" href="services/oven-repair" aria-label="Oven Service – learn more">
-              <span class="service-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3" width="17" height="18" rx="2.5"/><line x1="3.5" y1="9" x2="20.5" y2="9"/><circle cx="8" cy="6" r="1"/><circle cx="12" cy="6" r="1"/><circle cx="16" cy="6" r="1"/><rect x="7" y="12" width="10" height="6" rx="1"/></svg></span>
-              <h3>Oven Service</h3>
-              <span class="service-link" aria-hidden="true">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="service-card" href="services/wine-cooler-repair" aria-label="Wine Cooler Service – learn more">
-              <span class="service-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><line x1="6" y1="12" x2="18" y2="12"/><path d="M10 5.5h4M10 8h4"/><line x1="9" y1="15" x2="9" y2="18.5"/></svg></span>
-              <h3>Wine Cooler Service</h3>
-              <span class="service-link" aria-hidden="true">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="service-card" href="services/dishwasher-repair" aria-label="Dishwasher Service – learn more">
-              <span class="service-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><line x1="4" y1="8" x2="20" y2="8"/><circle cx="7.5" cy="5.25" r=".4" fill="currentColor"/><circle cx="10" cy="5.25" r=".4" fill="currentColor"/><circle cx="12" cy="14.5" r="3.5"/><path d="M12 11.2c1 1 1 2.6 0 3.3"/></svg></span>
-              <h3>Dishwasher Service</h3>
-              <span class="service-link" aria-hidden="true">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
-          </li>
-          <li>
-            <a class="service-card" href="services/washer-repair" aria-label="Washer Service – learn more">
-              <span class="service-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><line x1="4" y1="7" x2="20" y2="7"/><circle cx="12" cy="14" r="4.2"/><circle cx="7.5" cy="4.75" r=".4" fill="currentColor"/><circle cx="10" cy="4.75" r=".4" fill="currentColor"/></svg></span>
+              <p>Expert refrigerator diagnostics and repair for all major brands.</p>
+              <a href="services/refrigerator-repair" class="svc-panel-link">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+          <div class="svc-panel" data-href="services/washer-repair">
+            <span class="svc-panel-label">Washer Service</span>
+            <div class="svc-panel-content">
+              <span class="svc-panel-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><line x1="4" y1="7" x2="20" y2="7"/><circle cx="12" cy="14" r="4.2"/><circle cx="7.5" cy="4.75" r=".4" fill="currentColor"/><circle cx="10" cy="4.75" r=".4" fill="currentColor"/></svg></span>
               <h3>Washer Service</h3>
-              <span class="service-link" aria-hidden="true">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            </a>
-          </li>
-        </ul>
+              <p>Top-load and front-load washer repair: spin, drain, and fill issues.</p>
+              <a href="services/washer-repair" class="svc-panel-link">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+          <div class="svc-panel" data-href="services/dryer-repair">
+            <span class="svc-panel-label">Dryer Service</span>
+            <div class="svc-panel-content">
+              <span class="svc-panel-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2.5"/><line x1="4" y1="7" x2="20" y2="7"/><circle cx="12" cy="14" r="4.2"/><path d="M8.5 14a1.5 1.5 0 0 1 3 0 1.5 1.5 0 0 0 3 0"/></svg></span>
+              <h3>Dryer Service</h3>
+              <p>Fast, reliable dryer repair: gas and electric models.</p>
+              <a href="services/dryer-repair" class="svc-panel-link">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+          <div class="svc-panel" data-href="services/dishwasher-repair">
+            <span class="svc-panel-label">Dishwasher</span>
+            <div class="svc-panel-content">
+              <span class="svc-panel-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="7" x2="20" y2="7"/><circle cx="16.5" cy="4.5" r=".6" fill="currentColor"/><rect x="6.5" y="4" width="5" height="1" rx=".5"/><line x1="7" y1="11" x2="17" y2="11"/><line x1="7" y1="13.5" x2="17" y2="13.5"/><line x1="7" y1="16" x2="17" y2="16"/><path d="M10 7v-1.5M14 7v-1.5" stroke-width="1"/></svg></span>
+              <h3>Dishwasher Service</h3>
+              <p>Leak, drainage, and cycle repair for all dishwasher brands.</p>
+              <a href="services/dishwasher-repair" class="svc-panel-link">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+          <div class="svc-panel" data-href="services/oven-repair">
+            <span class="svc-panel-label">Oven Service</span>
+            <div class="svc-panel-content">
+              <span class="svc-panel-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3" width="17" height="18" rx="2.5"/><line x1="3.5" y1="9" x2="20.5" y2="9"/><circle cx="8" cy="6" r="1"/><circle cx="12" cy="6" r="1"/><circle cx="16" cy="6" r="1"/><rect x="7" y="12" width="10" height="6" rx="1"/></svg></span>
+              <h3>Oven Service</h3>
+              <p>Oven and range repairs: heating elements, igniters, thermostats.</p>
+              <a href="services/oven-repair" class="svc-panel-link">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+          <div class="svc-panel" data-href="services/microwave-repair">
+            <span class="svc-panel-label">Microwave</span>
+            <div class="svc-panel-content">
+              <span class="svc-panel-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="15" rx="2.5"/><rect x="4.5" y="6.5" width="11" height="10" rx="1"/><circle cx="19" cy="9" r=".6" fill="currentColor"/><circle cx="19" cy="11.5" r=".6" fill="currentColor"/><circle cx="19" cy="14" r=".6" fill="currentColor"/><line x1="2" y1="19" x2="8" y2="19"/><line x1="16" y1="19" x2="22" y2="19"/></svg></span>
+              <h3>Microwave Service</h3>
+              <p>Microwave repair: not heating, sparking, turntable and door issues.</p>
+              <a href="services/microwave-repair" class="svc-panel-link">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+          <div class="svc-panel" data-href="services/wine-cooler-repair">
+            <span class="svc-panel-label">Wine Cooler</span>
+            <div class="svc-panel-content">
+              <span class="svc-panel-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="1" width="16" height="22" rx="2"/><line x1="4" y1="5" x2="20" y2="5"/><circle cx="12" cy="3.2" r=".7" fill="currentColor" stroke="none"/><path d="M8.5 7.5Q8.5 13 12 13Q15.5 13 15.5 7.5" stroke-width="1.3"/><line x1="8.5" y1="7.5" x2="15.5" y2="7.5" stroke-width="1.3"/><line x1="12" y1="13" x2="12" y2="18.5" stroke-width="1.3"/><line x1="9" y1="18.5" x2="15" y2="18.5" stroke-width="1.3"/></svg></span>
+              <h3>Wine Cooler Service</h3>
+              <p>Temperature control, compressor, and thermostat repair for wine coolers.</p>
+              <a href="services/wine-cooler-repair" class="svc-panel-link">Learn More <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -348,7 +384,7 @@
       <div class="container">
         <div class="commercial-top">
           <div class="commercial-copy">
-            <span class="eyebrow eyebrow-light">For business</span>
+            <span class="eyebrow">For business</span>
             <h2 id="commercial-heading">Commercial Appliance Repair</h2>
             <p>
               Downtime costs you money. Fast Quality keeps restaurants, cafés, laundromats,
@@ -357,15 +393,15 @@
             </p>
 
             <ul class="commercial-list">
-              <li><h3>Restaurants &amp; Kitchens</h3><p>Commercial hoods, restaurant stoves, commercial ovens, and fryers.</p></li>
-              <li><h3>Walk-In Refrigeration</h3><p>Walk-in freezers, walk-in refrigerators, ice machines, and beverage coolers.</p></li>
+              <li><h3>Restaurants &amp; Kitchens</h3><p>Commercial hoods, restaurant stoves, commercial ovens, fryers, and commercial refrigerators.</p></li>
+              <li><h3>Offices &amp; Breakrooms</h3><p>Office refrigerators, ice machines, dishwashers, and breakroom appliances.</p></li>
               <li><h3>Laundromats &amp; Coin-Op</h3><p>Commercial washers and coin dryers serviced to minimize downtime.</p></li>
               <li><h3>Bars &amp; Cafés</h3><p>Commercial dishwashers and fountain soda machines kept reliable.</p></li>
             </ul>
 
             <div class="commercial-actions">
               <a href="#book" class="btn btn-primary btn-lg">Request Service</a>
-              <a href="tel:+19095543252" class="btn btn-light btn-lg">Call 909-554-3252</a>
+              <a href="tel:+19095543252" class="btn btn-outline btn-lg">Call 909-554-3252</a>
             </div>
           </div>
 
@@ -377,11 +413,24 @@
           </div>
         </div>
 
-        <div class="commercial-stats" aria-label="Commercial equipment we service">
-          <div class="stat"><strong>12+</strong><span>Types of commercial equipment</span></div>
-          <div class="stat"><strong>7 Days</strong><span>Open every day, 9 AM – 6 PM</span></div>
-          <div class="stat"><strong>#50682</strong><span>Major Appliance Repair license</span></div>
-          <div class="stat"><strong>5.0&#9733;</strong><span>Average customer rating</span></div>
+        <div class="commercial-bento" aria-label="Key numbers">
+          <div class="bento-card bento-wide">
+            <div class="bento-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3" width="17" height="18" rx="2.5"/><line x1="3.5" y1="9" x2="20.5" y2="9"/><circle cx="8" cy="6" r="1"/><circle cx="12" cy="6" r="1"/><circle cx="16" cy="6" r="1"/><rect x="7" y="12" width="10" height="6" rx="1"/></svg></div>
+            <strong class="bento-num" data-target="12" data-suffix="+">0</strong>
+            <span>Types of commercial equipment we service</span>
+          </div>
+          <div class="bento-card">
+            <strong class="bento-num" data-target="7" data-suffix=" Days">0</strong>
+            <span>Priority emergency response</span>
+          </div>
+          <div class="bento-card">
+            <strong class="bento-num" data-target="100" data-suffix="+">0</strong>
+            <span>Completed commercial repairs</span>
+          </div>
+          <div class="bento-card">
+            <strong class="bento-num" data-target="90" data-suffix="-Day">0</strong>
+            <span>Labor warranty</span>
+          </div>
         </div>
       </div>
     </section>
@@ -389,98 +438,69 @@
     <!-- ============ BRANDS WE WORK WITH ============ -->
     <section class="brands section" id="brands" aria-labelledby="brands-heading">
       <div class="container">
-        <header class="section-head">
-          <span class="eyebrow">Trusted expertise</span>
-          <h2 id="brands-heading">Brands We Work With</h2>
-          <p class="section-lead">
-            Our repair services cover appliances from a wide range of top brands and manufacturers, from everyday models to high-end built-ins.
-          </p>
-        </header>
-
-        <div class="brands-stage">
-          <div class="brands-wrench-wrap">
-            <span class="brands-wrench" aria-hidden="true">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <defs>
-                  <linearGradient id="wrenchGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#5C9BE0"/>
-                    <stop offset=".5" stop-color="#2C6FBF"/>
-                    <stop offset="1" stop-color="#1B3F6E"/>
-                  </linearGradient>
-                </defs>
-                <path fill="url(#wrenchGrad)" d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5 2.5-2.5z"/>
-              </svg>
-            </span>
+        <div class="brands-grid-wrap" aria-label="Appliance brands we service">
+          <!-- Row 1 -->
+          <div class="bg-cell"><img src="assets/brands/whirlpool.png" alt="Whirlpool" /></div>
+          <div class="bg-cell"><img src="assets/brands/lg.png" alt="LG" /></div>
+          <div class="bg-cell"><img src="assets/brands/samsung.png" alt="Samsung" /></div>
+          <div class="bg-cell"><img src="assets/brands/genew.svg" alt="GE" /></div>
+          <div class="bg-cell"><img src="assets/brands/bosch.png" alt="Bosch" /></div>
+          <!-- Row 2 -->
+          <div class="bg-cell"><img src="assets/brands/maytag.png" alt="Maytag" /></div>
+          <div class="bg-cell"><img src="assets/brands/kitchenaid.png" alt="KitchenAid" /></div>
+          <div class="bg-cell"><img src="assets/brands/sub-zero.png" alt="Sub-Zero" /></div>
+          <div class="bg-cell"><img src="assets/brands/viking.png" alt="Viking" /></div>
+          <div class="bg-cell"><img src="assets/brands/frigidaire.png" alt="Frigidaire" /></div>
+          <!-- Row 3: brand - TITLE (3 cols) - brand -->
+          <div class="bg-cell"><img src="assets/brands/wolf.png" alt="Wolf" /></div>
+          <div class="bg-cell bg-title">
+            <span class="eyebrow">Trusted expertise</span>
+            <h2 id="brands-heading">Brands We Service</h2>
           </div>
-          <p class="brands-we-fix">We proudly service</p>
+          <div class="bg-cell"><img src="assets/brands/electrolux.png" alt="Electrolux" /></div>
+          <!-- Row 4 -->
+          <div class="bg-cell"><img src="assets/brands/thermador.png" alt="Thermador" /></div>
+          <div class="bg-cell"><img src="assets/brands/miele.png" alt="Miele" /></div>
+          <div class="bg-cell"><img src="assets/brands/jenn-air.png" alt="Jenn-Air" /></div>
+          <div class="bg-cell"><img src="assets/brands/amana.png" alt="Amana" /></div>
+          <div class="bg-cell"><img src="assets/brands/sharp.png" alt="Sharp" /></div>
+          <!-- Row 5 -->
+          <div class="bg-cell"><img src="assets/brands/kenmore.png" alt="Kenmore" /></div>
+          <div class="bg-cell"><img src="assets/brands/dacor.png" alt="Dacor" /></div>
+          <div class="bg-cell"><img src="assets/brands/asko.png" alt="Asko" /></div>
+          <div class="bg-cell"><img src="assets/brands/fisher-paykel.png" alt="Fisher & Paykel" /></div>
+          <div class="bg-cell"><img src="assets/brands/magic-chef.png" alt="Magic Chef" /></div>
         </div>
-
-        <ul class="brand-logos" aria-label="Appliance brands we service">
-          <li><img src="assets/brands/whirlpool.png" alt="Whirlpool appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/lg.png" alt="LG appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/samsung.png" alt="Samsung appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/ge.png" alt="GE appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/bosch.png" alt="Bosch appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/maytag.png" alt="Maytag appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/kitchenaid.png" alt="KitchenAid appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/sub-zero.png" alt="Sub-Zero appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/viking.png" alt="Viking appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/frigidaire.png" alt="Frigidaire appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/wolf.png" alt="Wolf appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/electrolux.png" alt="Electrolux appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/thermador.png" alt="Thermador appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/miele.png" alt="Miele appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/jenn-air.png" alt="Jenn-Air appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/amana.png" alt="Amana appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/sharp.png" alt="Sharp appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/kenmore.png" alt="Kenmore appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/dacor.png" alt="Dacor appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/asko.png" alt="Asko appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/hotpoint.png" alt="Hotpoint appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/fisher-paykel.png" alt="Fisher & Paykel appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/sears.png" alt="Sears Kenmore appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/magic-chef.png" alt="Magic Chef appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/admiral.png" alt="Admiral appliance repair" loading="lazy" decoding="async" /></li>
-          <li><img src="assets/brands/roper.png" alt="Roper appliance repair" loading="lazy" decoding="async" /></li>
-        </ul>
-
-        <p class="brands-note">Don't see your brand? <a href="#book">Contact us</a> — we likely service it too.</p>
+        <p class="brands-note">Don't see your brand? <a href="#book">Contact us</a>. We likely service it too.</p>
       </div>
     </section>
 
-    <!-- ============ HOW IT WORKS ============ -->
-    <section class="why section" id="why" aria-labelledby="why-heading">
-      <div class="container">
-        <header class="section-head">
+    <!-- ============ HOW IT WORKS (scroll-hijack) ============ -->
+    <section class="hiw" id="why">
+      <div class="hiw-sticky">
+        <div class="hiw-head">
           <span class="eyebrow">How it works</span>
           <h2 id="why-heading">Working With Us Is Easy</h2>
-          <p class="section-lead">From your first call to a fully working appliance, in just four simple steps.</p>
-        </header>
-
-        <div class="stairway">
-          <ol class="steps-grid">
-            <li class="step">
-              <div class="step-plate"><img class="walker" src="assets/house-mark.png" alt="" aria-hidden="true" /><span class="step-title">Set an Appointment</span></div>
-              <p class="step-desc">Call or book online and tell us the appliance and what's going wrong.</p>
-            </li>
-            <li class="step">
-              <div class="step-plate"><span class="step-title">Diagnosis &amp; Estimate</span></div>
-              <p class="step-desc">Our experienced technician evaluates your appliance, explains the issue, and gives you a clear repair estimate.</p>
-            </li>
-            <li class="step">
-              <div class="step-plate"><span class="step-title">Quick, Easy Repair</span></div>
-              <p class="step-desc">We restore your appliance to full functionality with prompt, professional repair service.</p>
-            </li>
-            <li class="step">
-              <div class="step-plate"><span class="step-title">Enjoy &amp; Review</span></div>
-              <p class="step-desc">Enjoy your fully working appliance — and let us know how we did with a quick review.</p>
-            </li>
-          </ol>
+        </div>
+        <div class="hiw-counter"><span class="hiw-cur">1</span> / 4</div>
+        <div class="hiw-nav-wrap">
+          <button class="hiw-arrow hiw-arrow-prev" aria-label="Previous step">&#8592;</button>
+          <div class="hiw-card">
+            <div class="hiw-card-inner">
+              <span class="hiw-num">01</span>
+              <h3 class="hiw-title">Set an Appointment</h3>
+              <p class="hiw-desc">Call or book online and tell us the appliance and what's going wrong.</p>
+            </div>
+          </div>
+          <button class="hiw-arrow hiw-arrow-next" aria-label="Next step">&#8594;</button>
+        </div>
+        <div class="hiw-progress">
+          <div class="hiw-progress-fill"></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ REVIEWS ============ -->
+    <!-- ============ REVIEWS (Elfsight Google Reviews) ============ -->
     <section class="reviews section" id="reviews" aria-labelledby="reviews-heading">
       <div class="container">
         <header class="section-head">
@@ -488,69 +508,8 @@
           <h2 id="reviews-heading">What Our Clients Think</h2>
           <p class="section-lead">We're proud of the reputation we've built with our customers, one repair at a time.</p>
         </header>
-
-        <div class="reviews-grid">
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>My fridge stopped cooling right before a family gathering, and I panicked. Fast Quality sent a technician within two hours, and he fixed the problem in no time. He even gave me tips to avoid future issues. Absolutely saved the day!</blockquote>
-            <footer><strong>Emily Johnson</strong><span>Refrigerator repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>They did a good job repairing my washing machine, but it took a week for the replacement part to arrive. The technician kept me updated, which I appreciated. Overall, I'm happy with the result.</blockquote>
-            <footer><strong>Mark Davis</strong><span>Washer repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>Our restaurant dishwasher broke down during a busy week, and it was a nightmare. Fast Quality had it running again the next morning, and it's been perfect ever since. The team was professional and knew exactly what they were doing.</blockquote>
-            <footer><strong>Rachel Peterson</strong><span>Commercial dishwasher</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>The technician arrived right on time and was very polite. He explained the repair process clearly, so I actually understood what went wrong with my oven. It's been working like a charm ever since.</blockquote>
-            <footer><strong>Michael Brown</strong><span>Oven repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>My washing machine stopped mid-cycle and wouldn't drain. Fast Quality fixed it quickly. The cost was a little higher than I expected, but I can't complain since I didn't have to wait days for a working machine.</blockquote>
-            <footer><strong>Linda Harris</strong><span>Washer repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>I was ready to buy a new fridge, but decided to try one last repair. These guys figured out the issue and fixed it in under an hour. Saved me hundreds of dollars and a lot of stress.</blockquote>
-            <footer><strong>Tom Anderson</strong><span>Refrigerator repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>Called them in the morning, and by the afternoon my dryer was running again. The staff was friendly, the price was fair, and I didn't have to take a day off work. That's how service should be.</blockquote>
-            <footer><strong>Sarah Mitchell</strong><span>Dryer repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>I had to call them twice for the same dryer issue. The first repair didn't last, but the second time they replaced a different part and now it works perfectly. They didn't charge me for the follow-up, which I respect.</blockquote>
-            <footer><strong>David Clark</strong><span>Dryer repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>My oven hasn't been heating properly for months. Fast Quality diagnosed the issue quickly and had it fixed on the spot. I can finally bake again without guessing the temperature.</blockquote>
-            <footer><strong>Jessica Lee</strong><span>Oven repair</span></footer>
-          </article>
-          <article class="review-card">
-            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>They've repaired both my dishwasher and microwave over the past year. Every time, they show up on time, explain what's wrong, and fix it properly. It's rare to find a service this consistent.</blockquote>
-            <footer><strong>Brian Walker</strong><span>Dishwasher repair</span></footer>
-          </article>
-        </div>
-
-        <div class="reviews-badges" aria-label="Review platforms">
-          <a href="https://g.page/r/CYc-bJC6BpJ1EBM/review" target="_blank" rel="noopener"><img src="assets/badges/google-reviews.jpg" alt="Google Verified Reviews" loading="lazy" decoding="async" /></a>
-          <img src="assets/badges/yelp-reviews.png" alt="Review us on Yelp" loading="lazy" decoding="async" />
-          <img src="assets/badges/facebook-reviews.png" alt="Review us on Facebook" loading="lazy" decoding="async" />
-          <img src="assets/badges/houzz-reviews.png" alt="Review us on Houzz" loading="lazy" decoding="async" />
-          <img src="assets/badges/angies-list-reviews.png" alt="Review us on Angie's List" loading="lazy" decoding="async" />
-          <img src="assets/badges/thumbtack-reviews.jpg" alt="Thumbtack Verified Review" loading="lazy" decoding="async" />
-        </div>
-        <p class="reviews-link"><a href="https://g.page/r/CYc-bJC6BpJ1EBM/review" target="_blank" rel="noopener noreferrer">Leave us a review on Google &rarr;</a></p>
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div class="elfsight-app-149ce319-39d2-47e7-b894-70b5f2dbc947" data-elfsight-app-lazy></div>
       </div>
     </section>
 
@@ -582,7 +541,11 @@
           </details>
           <details class="faq-item">
             <summary><h3>What payment methods do you accept?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
-            <div class="faq-answer"><p>We accept Visa, Mastercard, American Express, and Square. Our technician will provide a clear estimate before any repair work begins.</p></div>
+            <div class="faq-answer"><p>We accept Visa, Mastercard, American Express, Square, cash, and checks. Our technician will provide a clear estimate before any repair work begins.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Do you offer a warranty on your repairs?</h3><span class="faq-icon" aria-hidden="true"></span></summary>
+            <div class="faq-answer"><p>Yes. Every repair comes with a 90-day labor warranty. If the same issue returns within that period, we'll come back and fix it at no additional charge for labor.</p></div>
           </details>
         </div>
       </div>
@@ -627,11 +590,10 @@
           <img src="assets/logo-emblem-light.png" alt="" class="logo-img" /> <span class="logo-text">Fast<span>Quality</span><small>Appliance Repair</small></span>
         </a>
         <p>Reliable residential &amp; commercial appliance repair, proudly serving Riverside, San Bernardino, and the surrounding Inland Empire communities.</p>
-        <div class="footer-pay" aria-label="Accepted payments">
-          <img src="assets/payments/visa.png" alt="Visa" loading="lazy" />
-          <img src="assets/payments/mastercard.png" alt="Mastercard" loading="lazy" />
-          <img src="assets/payments/amex.png" alt="American Express" loading="lazy" />
-          <img src="assets/payments/square.png" alt="Square" loading="lazy" />
+        <div class="footer-social" aria-label="Social media">
+          <a href="https://www.yelp.com/biz/fast-quality-appliance-repair-riverside" target="_blank" rel="noopener" aria-label="Yelp"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M7.69 15.14l-3.67.85c-.38.09-.76.18-1.15.15-.26-.02-.51-.04-.76-.21a1.18 1.18 0 0 1-.33-.36c-.35-.55-.37-1.37-.37-2 0-.7.11-1.4.33-2.07.03-.08.07-.16.11-.25.04-.07.08-.14.13-.22.05-.06.1-.13.16-.2a1.17 1.17 0 0 1 .4-.28 1.08 1.08 0 0 1 .46-.08c.24 0 .51.05.91.17l.19.06c.33.1.7.24 1.15.4.69.24 1.37.49 2.05.74l1.21.44c.22.08.44.18.64.3.17.1.33.23.45.39.08.12.15.26.19.43a1.22 1.22 0 0 1-.87 1.45l-.11.03-1.1.26zM18.82 7.57a1.85 1.85 0 0 0-.2-.18 2.41 2.41 0 0 0-.44-.25 1.17 1.17 0 0 0-.48-.08c-.16 0-.31.04-.45.13-.21.1-.44.27-.74.55l-.14.13c-.25.24-.53.53-.86.87-.52.53-1.03 1.06-1.52 1.56l-.9.93a4.19 4.19 0 0 0-.45.55 1.54 1.54 0 0 0-.24.55 1.22 1.22 0 0 0 1.44 1.39l.11-.02 4.78-1.1c.38-.09.76-.17 1.1-.36.23-.13.44-.26.59-.53.06-.12.11-.26.14-.47.07-.65-.27-1.39-.54-1.96a6.28 6.28 0 0 0-1.2-1.71zM8.97.08a8.67 8.67 0 0 0-.83.16c-.28.07-.55.14-.81.22-.87.28-2.09.81-2.3 1.81-.12.57.16 1.14.37 1.66.26.63.61 1.19.94 1.78.85 1.55 1.72 3.1 2.59 4.65.26.46.54 1.05 1.04 1.29a1.06 1.06 0 0 0 .85.09 1.21 1.21 0 0 0 .61-.35c.05-.05.07-.09.08-.08.35-.44.35-1.08.38-1.61.1-1.77.21-3.54.3-5.31.03-.67.11-1.33.07-2.01-.03-.56-.04-1.2-.39-1.66C11.14-.09 9.87-.03 8.97.08zm2.08 15.95a1.11 1.11 0 0 0-1.38-.35 1.48 1.48 0 0 0-.22.14c-.2.15-.37.34-.52.53l-.12.16-.77 1.06c-.44.6-.87 1.2-1.29 1.79-.28.39-.52.72-.71 1.01l-.11.16c-.23.35-.36.61-.42.84a1.09 1.09 0 0 0 .12.94c.05.07.1.14.15.21.05.06.11.12.18.18.07.06.14.12.21.17.53.37 1.11.63 1.72.84.52.15 1.05.25 1.57.3.09 0 .18 0 .27-.01.08-.01.17-.02.25-.04.08-.02.17-.04.24-.07a1.19 1.19 0 0 0 .42-.27c.11-.11.2-.25.25-.4.09-.22.15-.5.19-.92l.02-.2c.03-.35.04-.75.07-1.23.04-.74.07-1.47.09-2.2l.05-1.31c.01-.3 0-.63-.08-.93a1.4 1.4 0 0 0-.18-.41zm8.68 2.04c-.16-.18-.39-.35-.75-.57l-.17-.1c-.3-.18-.66-.37-1.08-.6-.65-.35-1.3-.69-1.94-1.04l-1.15-.61-.18-.09c-.22-.11-.46-.2-.7-.25a1.11 1.11 0 0 0-1.1.9 1.42 1.42 0 0 0 .02.44c.06.31.19.61.33.88l.62 1.15c.34.65.69 1.3 1.04 1.94.23.42.42.78.6 1.08l.1.17c.22.36.39.58.57.75.11.11.25.2.4.25.16.05.33.07.49.05.08-.01.17-.02.25-.04.08-.02.16-.05.24-.08a1.86 1.86 0 0 0 .25-.11 6.1 6.1 0 0 0 1.28-.96c.46-.45.87-.95 1.18-1.51.04-.08.08-.16.11-.25.03-.08.06-.16.08-.24.02-.08.03-.17.04-.25a1.19 1.19 0 0 0-.06-.49 1.09 1.09 0 0 0-.25-.4z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61585289600174" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12z"/></svg></a>
+          <a href="https://www.instagram.com/fastqualityappliancerepair/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg></a>
         </div>
       </div>
 
@@ -641,6 +603,7 @@
           <li><a href="services/refrigerator-repair">Refrigerator Repair</a></li>
           <li><a href="services/dryer-repair">Dryer Repair</a></li>
           <li><a href="services/oven-repair">Oven Repair</a></li>
+          <li><a href="services/microwave-repair">Microwave Repair</a></li>
           <li><a href="services/wine-cooler-repair">Wine Cooler Repair</a></li>
           <li><a href="services/dishwasher-repair">Dishwasher Repair</a></li>
           <li><a href="services/washer-repair">Washer Repair</a></li>
@@ -663,9 +626,9 @@
         <h3>Contact</h3>
         <ul>
           <li><a href="tel:+19095543252">909-554-3252</a></li>
-          <li><a href="tel:+19099078090">909-907-8090</a> (additional)</li>
+          <li><a href="tel:+19099078090">909-907-8090</a></li>
           <li><a href="mailto:office@fastquality.org">office@fastquality.org</a></li>
-          <li>4020 Chicago Ave, Ste 1039<br>Riverside, CA 92507</li>
+          <li>4020 Chicago Ave<br>Riverside, CA 92507</li>
           <li>Open daily: 9:00 AM &ndash; 6:00 PM</li>
           <li>License #50682 · Major Appliance Repair</li>
         </ul>
@@ -719,6 +682,7 @@
             <option>Refrigerator</option>
             <option>Dryer</option>
             <option>Oven</option>
+            <option>Microwave</option>
             <option>Wine Cooler</option>
             <option>Dishwasher</option>
             <option>Washer</option>
