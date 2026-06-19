@@ -536,7 +536,7 @@ h1, h2 { text-transform: uppercase; }
 @media (max-width: 900px) {
   .svc-layout { grid-template-columns: 1fr; gap: 28px; }
   .svc-heading { text-align: center; }
-  .svc-arrows { justify-content: center; }
+  .svc-arrows { display: none; }
 }
 @media (max-width: 768px) {
   .svc-accordion { flex-direction: column; height: auto; }
